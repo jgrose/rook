@@ -115,14 +115,14 @@ kubectl delete storageclass rook-ceph-block
 ## Advanced Example: Erasure Coded Block Storage
 
 If you want to use erasure coded pool with RBD, your OSDs must use `bluestore` as their `storeType`.
-Additionally the nodes that are going to mount the erasure coded RBD block storage must have Linux kernel >= `4.11`.
+Additionally, the nodes that are going to mount the erasure coded RBD block storage must have Linux kernel >= `4.11`.
 
 To be able to use an erasure coded pool you need to create two pools (as seen below in the definitions): one erasure coded and one replicated.
 The replicated pool must be specified as the `blockPool` parameter. It is used for the metadata of the RBD images.
 The erasure coded pool must be set as the `dataBlockPool` parameter below. It is used for the data of the RBD images.
 
 **NOTE** This example requires you to have **at least 3 bluestore OSDs each on a different node**.
-This is because the below `erasureCoded` chunk settings require at least 3 bluestore OSDs and as [`failureDomain` setting](ceph-pool-crd.md#spec) to `host` (default), each OSD needs to be on a different nodes.
+This is because the below `erasureCoded` chunk settings require at least 3 bluestore OSDs and as [`failureDomain` setting](ceph-pool-crd.md#spec) to `host` (default), each OSD needs to be on a different node.
 
 ```yaml
 apiVersion: ceph.rook.io/v1
